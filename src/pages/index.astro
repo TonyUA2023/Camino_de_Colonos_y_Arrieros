@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImgPortada from '../components/ImgPortada.astro';
+import Intro from '../components/Intro.astro';
+import Historia from '../components/Historia.astro';
+import SobreNosotros from '../components/SobreNosotros.astro';
+import Ubicacion from '../components/Ubicacion.astro';
+import Recorrido from '../components/Recorrido.astro'
+
+import Sobre from '../components/Sobre.astro';
+import Objetivos from '../components/Objetivos.astro';
+import Revista from '../components/Revista.astro';
+import Importancia from '../components/Importancia.astro';
+import PreFooter from '../components/PreFooter.astro';
+import Footer from '../components/Footer.astro';
+import { ViewTransitions, slide } from 'astro:transitions';
+const data = await fetch('https://webeacontony.com/prueba/wp-json/wp/v2/landing_camino?acf_format=standar');
+const datos = await data.json ();
+//console.log(datos[0].acf);
+const datosLanding = datos[0].acf;
+---
+
+<Layout 
+	title="Camino de Colonos y Arrieros - Explora las maravillas naturales del Perú" 
+	description="Ofrecemos emocionantes rutas de senderismo en los paisajes más impresionantes. ¡Únete a nosotros para una aventura inolvidable!"
+	>
+	<main>
+		<header class=" py-1 px-10 flex items-center fixed top-0 w-full justify-between z-20 bg-gray-50 bg-opacity-10 backdrop-filter backdrop-blur-lg">
+			<div>
+				<img 
+					class="max-h-20"
+					src="/public/LOGO-SIN-FONDO.png" 
+					alt="Logo de Caminos y Colonos"
+				>
+			</div>
+			<nav >
+				<ul class="flex text-sm  [&>li>a]:font-extrabold [&>li>a]:text-gray-800 [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2">
+					<li><a href="#">INICIO</a></li>
+					<li><a href="#">HISTORIA</a></li>
+					<li><a href="#">SOBRE NOSOTROS</a></li>
+					<li><a href="#">OBJETIVOS</a></li>
+					<li><a href="#">TRAYECTO</a></li>
+					<li><a href="#">NUESTRA REVISTA</a></li>
+				</ul>
+			</nav>
+		</header>
+
+
+		<ImgPortada
+			datosLanding={datosLanding}
+		/>
+		<Intro/>
+		<Historia
+			datosLanding = {
+				datosLanding
+			}
+		/>
+		<SobreNosotros/>
+		<Ubicacion/>
+		<Recorrido/>
+		<Objetivos/>
+		<Revista/>
+		<Importancia/>	
+		<PreFooter/>
+		<Footer/>
+	</main>
+	
+</Layout>
+

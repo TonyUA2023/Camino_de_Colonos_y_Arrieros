@@ -1,0 +1,93 @@
+---
+const {datosLanding} = Astro.props;
+console.log(datosLanding);
+---
+
+<div class="w-full relative">
+
+    <h1 
+    class=" absolute top-52 z-10 w-[550px] left-20 m-auto text-7xl font-bold leading-snug tracking-widest">{datosLanding.text_portada}
+    </h1>
+    
+    <div class="slider">
+        <ul>
+            <li>
+                <img 
+                class="w-full h-screen object-cover object-top animate-fade "
+                src="/public/img/portada/1.jpeg " 
+                alt="Imagen de Paisaje de Cusco"
+                style="filter: opacity(80%); "
+                > 
+            </li>
+            <li>
+                <img 
+                class="w-full h-screen object-cover object-top"
+                src="/public/img/portada/2.jpeg " 
+                alt="Imagen de Paisaje de Cusco"
+                style="filter: opacity(80%); "
+                > 
+            </li>
+            <li>
+                <img 
+                class="w-full h-screen object-cover object-top"
+                src="/public/img/portada/3.jpeg" 
+                alt="Imagen de Paisaje de Cusco"
+                style="filter: opacity(80%); "
+                > 
+            </li>
+            <li>
+                <img 
+                class="w-full h-screen object-cover object-top"
+                src="/public/img/portada/4.jpeg" 
+                alt="Imagen de Paisaje de Cusco"
+                style="filter: opacity(80%); "
+                > 
+            </li>
+
+            <li>
+                <img 
+                class="w-full h-screen object-cover object-top"
+                src="/public/img/portada/6.jpeg" 
+                alt="Imagen de Paisaje de Cusco"
+                style="filter: opacity(80%); "
+                > 
+            </li>
+        </ul>
+
+       
+    </div>
+
+</div>
+
+<style>
+    
+    .slider{
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .slider ul{
+        display: flex;
+        animation: cambio 10s 10s infinite alternate linear;
+        width: 500%;
+    }
+
+    .slider li{
+        width: 100%;
+        list-style: none;
+    }
+
+    @keyframes cambio{
+        0%{margin-left: 0;}
+        20%{margin-left: 0;}
+        
+        25%{margin-left: -100%;}
+        45%{margin-left: -100%;}
+        
+        50%{margin-left: -200%;}
+        70%{margin-left: -200%;}
+        
+        75%{margin-left: -300%;}
+        100%{margin-left: -300%;}
+    }
+</style>

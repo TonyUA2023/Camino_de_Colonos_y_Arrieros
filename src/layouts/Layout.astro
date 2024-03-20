@@ -1,0 +1,123 @@
+---
+import Header from '../components/Header.astro';
+
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+import { ViewTransitions, slide } from 'astro:transitions';
+
+const { description, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title}</title>
+	</head>
+	<body class="min-h-screen pb-32">
+		<Header/>
+		<slot/>
+	</body>
+</html>
+
+<style is:global>
+
+	html {
+		font-family: montserrat, sans-serif;
+		background: #1A603B;
+		background-size: 224px;
+		color-scheme: dark light;
+	}
+	code {
+		font-family:
+			Monserrat,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+
+	/*QUE APARECE DE LA IZQUIERDA A LA DERECHA */
+	@keyframes animation-left{
+		from {
+            opacity:0;
+			transform: translateX(-100%);
+        }
+
+        to {
+            opacity: 1;
+			transform: translateX(0);
+        }
+	}
+
+	.animation-left-scroll{
+		view-timeline-name: --contenedorIzq;
+        view-timeline-axis: block;
+        animation-timeline: --contenedorIzq;
+        animation-name: animation-left;
+        animation-range: entry 25% cover 30%;
+        animation-fill-mode: both;
+	}
+
+	/*DE LA DERECHA A LA IZQUIERDA */
+
+	@keyframes animation-right{
+		from {
+            opacity:0;
+			transform: translateX(10%);
+        }
+
+        to {
+            opacity: 1;
+			transform: translateX(0);
+        }
+	}
+
+	.animation-right-scroll{
+		view-timeline-name: --contenedorDer;
+        view-timeline-axis: block;
+        animation-timeline: --contenedorDer;
+        animation-name: animation-right;
+        animation-range: entry 28% cover 50%;
+        animation-fill-mode: both;
+	}
+
+
+	/*APARECE EN EL CENTRO Y SE AGRANDA */
+	
+	@keyframes show{
+        from {
+            opacity:0;
+            scale: 25%;
+        }
+
+        to {
+            opacity: 1;
+            scale: 100%;
+        }
+
+        
+    }
+
+    .animation-scroll{
+        view-timeline-name: --contenedor;
+        view-timeline-axis: block;
+        animation-timeline: --contenedor;
+        animation-name: show;
+        animation-range: entry 25% cover 30%;
+        animation-fill-mode: both;
+    }
+
+
+
+</style>
